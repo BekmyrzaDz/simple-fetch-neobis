@@ -6,11 +6,23 @@ const getData = async (url) => {
 
 getData('https://jsonplaceholder.typicode.com/posts')
   .then(data => {
+    let box = document.querySelector('.box');
+
     for (let i = 0; i < data.length; i++) {
       if (data[i].userId == 1) {
         for (let key in data[i]) {
-          document.write(`${key}: ${data[i][key]}</br>`);
+          let list = document.createElement('ul');
+          let listItem = document.createElement('li');
+
+          listItem.innerHTML = `${key}: ${data[i][key]}`;
+
+          list.appendChild(listItem);
+
+          box.appendChild(list);
         }
+
+        let hr = document.createElement('hr');
+        box.appendChild(hr);
       }
     }
   });
